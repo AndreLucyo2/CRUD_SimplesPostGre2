@@ -5,6 +5,13 @@
  */
 package VIEW;
 
+import DAO.Conexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Andre
@@ -124,7 +131,27 @@ public class FormCadastroView extends javax.swing.JFrame
 
     private void ButtonSalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonSalvarActionPerformed
     {//GEN-HEADEREND:event_ButtonSalvarActionPerformed
-      
+        try
+        {
+            //Criar o objeto da conexao
+            Connection conexao = new Conexao().getConection();
+            
+            //Cria o SQL do Insert:
+            String sql = "INSERT INTO usuario(usuario,senha) VALUES('Andre','123456'); ";
+            
+            //Faz o trabalho de preparar e tratar e Executar o SQL no banco:
+            PreparedStatement statement = conexao.prepareStatement(sql);
+            statement.execute();
+            
+            //Fechar a conexao:
+            conexao.close();
+            
+            
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(FormCadastroView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ButtonSalvarActionPerformed
 
     private void jTextFileldIdActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextFileldIdActionPerformed
