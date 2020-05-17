@@ -5,13 +5,9 @@
  */
 package VIEW;
 
-import DAO.Conexao;
-import DAO.UsuarioDAO;
-import MODEL.UsuarioDTO;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import CONTROLLER.FormCadastroController;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -20,12 +16,19 @@ import java.util.logging.Logger;
 public class FormCadastroView extends javax.swing.JFrame
 {
 
+    //Propriedade do Controller:
+    private final FormCadastroController controller;
+
     /**
      * Creates new form FormCadastroView
      */
     public FormCadastroView()
     {
         initComponents();
+
+        //Criar um controlador da view que recebe uma VIEW como parametro:
+        controller = new FormCadastroController(this);
+
     }
 
     /**
@@ -105,6 +108,7 @@ public class FormCadastroView extends javax.swing.JFrame
         LabelUsuario1.setText("ID");
         jPanel1.add(LabelUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
+        jTextFileldId.setEditable(false);
         jTextFileldId.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -132,26 +136,9 @@ public class FormCadastroView extends javax.swing.JFrame
 
     private void ButtonSalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonSalvarActionPerformed
     {//GEN-HEADEREND:event_ButtonSalvarActionPerformed
-        //Cria o objeto usuario: para o teste usando o DTO
-        UsuarioDTO usuario = new UsuarioDTO("Pedro", "123456");
-        
-        try
-        {
-            //Pega a conexao:
-            Connection conexao = new Conexao().getConection();
-            
-            //Cria o DAO que tem o Insert:
-            UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
-            usuarioDAO.insert(usuario);
-            
-        }
-        catch (SQLException ex)
-        {
-            Logger.getLogger(FormCadastroView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
+
+        controller.salvaUsuario();
+
     }//GEN-LAST:event_ButtonSalvarActionPerformed
 
     private void jTextFileldIdActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextFileldIdActionPerformed
@@ -207,6 +194,39 @@ public class FormCadastroView extends javax.swing.JFrame
             }
         });
     }
+
+    public JPasswordField getjPasswordFileldSenha()
+    {
+        return jPasswordFileldSenha;
+    }
+
+    public void setjPasswordFileldSenha(JPasswordField jPasswordFileldSenha)
+    {
+        this.jPasswordFileldSenha = jPasswordFileldSenha;
+    }
+
+    public JTextField getjTextFileldId()
+    {
+        return jTextFileldId;
+    }
+
+    public void setjTextFileldId(JTextField jTextFileldId)
+    {
+        this.jTextFileldId = jTextFileldId;
+    }
+
+    public JTextField getjTextFileldUsuario()
+    {
+        return jTextFileldUsuario;
+    }
+
+    public void setjTextFileldUsuario(JTextField jTextFileldUsuario)
+    {
+        this.jTextFileldUsuario = jTextFileldUsuario;
+    }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonSalvar;
