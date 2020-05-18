@@ -57,6 +57,7 @@ public class LoginController
         }
         else
         {
+            //Mesagem de sucesso:
             JOptionPane.showMessageDialog(null, "Usuario ou senha inválido!");
             
         }  

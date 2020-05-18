@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -18,9 +19,10 @@ import java.util.ArrayList;
  */
 public class UsuarioDAO
 {
+
     //Usa uma propriedade no construtor:
     private final Connection connection;
-    
+
     //Usuario so pode ser criado se passar uma conexao:
     public UsuarioDAO(Connection connection)
     {
@@ -33,15 +35,33 @@ public class UsuarioDAO
      * @param usuario
      * @throws SQLException
      */
-    public void insert(UsuarioDTO usuario) throws SQLException //lança uma SQL Exception caso der erro.
+    public UsuarioDTO insert(UsuarioDTO usuario) throws SQLException //lança uma SQL Exception caso der erro.
     {
-        //Cria o Select INSERT:
-        String sql = "INSERT INTO usuario(usuario,senha) VALUES('" + usuario.getUsuario() + "','" + usuario.getSenha() + "'); ";
+        //Cria  INSERT:
+        String sql = "INSERT INTO usuario(usuario,senha) VALUES(?,?); ";
 
-        //Prepara a Conexao com o banco, informano uma Query sql:
-        PreparedStatement statement = connection.prepareStatement(sql);
+        //Prepara a Conexao com o banco, informano uma Query sql: no Insert ja retorna o ID gerado
+        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+        statement.setString(1, usuario.getUsuario());//ordem do ponto de insterrogação 
+        statement.setString(2, usuario.getSenha());
+
         statement.execute();
 
+        //Recupera o ID retorado do insert:
+        ResultSet resultSet = statement.getGeneratedKeys();
+
+        //Valida se retornou id
+        if (resultSet.next())
+        {
+            //Le a linha do ID
+            int id = resultSet.getInt("id");
+            //Preenche o usuario com o ID gerado
+            usuario.setId(id);
+        }
+
+        //retorna o usuario com o id definido.
+         return usuario;
     }
 
     /**
