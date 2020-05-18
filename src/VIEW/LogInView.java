@@ -5,12 +5,18 @@
  */
 package VIEW;
 
+import CONTROLLER.LoginController;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Andre
  */
 public class LogInView extends javax.swing.JFrame
 {
+    //Cria a propriedade controller:
+    private final LoginController controller;
 
     /**
      * Creates new form LogInView
@@ -18,6 +24,9 @@ public class LogInView extends javax.swing.JFrame
     public LogInView()
     {
         initComponents();
+        
+        //no construtor ja definir o controller: e passar a View
+        controller = new LoginController(this);
     }
 
     /**
@@ -129,8 +138,9 @@ public class LogInView extends javax.swing.JFrame
 
     private void ButtonEntrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonEntrarActionPerformed
     {//GEN-HEADEREND:event_ButtonEntrarActionPerformed
-        MenuView telaDeMenu = new MenuView();
-        telaDeMenu.setVisible(true);
+        //Logica de autenticar foi para o controller:
+        controller.autenticar();
+        
     }//GEN-LAST:event_ButtonEntrarActionPerformed
 
     /**
@@ -180,6 +190,26 @@ public class LogInView extends javax.swing.JFrame
                 new LogInView().setVisible(true);
             }
         });
+    }
+
+    public JPasswordField getjPasswordFileldSenha()
+    {
+        return jPasswordFileldSenha;
+    }
+
+    public void setjPasswordFileldSenha(JPasswordField jPasswordFileldSenha)
+    {
+        this.jPasswordFileldSenha = jPasswordFileldSenha;
+    }
+
+    public JTextField getjTextFileldUsuario()
+    {
+        return jTextFileldUsuario;
+    }
+
+    public void setjTextFileldUsuario(JTextField jTextFileldUsuario)
+    {
+        this.jTextFileldUsuario = jTextFileldUsuario;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
