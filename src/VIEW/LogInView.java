@@ -6,6 +6,9 @@
 package VIEW;
 
 import CONTROLLER.LoginController;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -138,8 +141,15 @@ public class LogInView extends javax.swing.JFrame
 
     private void ButtonEntrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonEntrarActionPerformed
     {//GEN-HEADEREND:event_ButtonEntrarActionPerformed
-        //Logica de autenticar foi para o controller:
-        controller.autenticar();
+        try
+        {
+            //Logica de autenticar foi para o controller:
+            controller.autenticar();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(LogInView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_ButtonEntrarActionPerformed
 
