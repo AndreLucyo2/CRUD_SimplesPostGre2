@@ -18,6 +18,9 @@ public class ConsultaView extends javax.swing.JFrame
     public ConsultaView()
     {
         initComponents();
+        
+        DefinirLarguraColunsTabela();
+
     }
 
     /**
@@ -31,144 +34,173 @@ public class ConsultaView extends javax.swing.JFrame
     {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextFileldUsuario = new javax.swing.JTextField();
-        ButtonSalvar2 = new javax.swing.JButton();
-        ButtonSalvar3 = new javax.swing.JButton();
-        ButtonSalvar4 = new javax.swing.JButton();
-        LabelUsuario3 = new javax.swing.JLabel();
+        jTextFileldPesquisa = new javax.swing.JTextField();
+        ButtonCancelar = new javax.swing.JButton();
+        ButtonOk = new javax.swing.JButton();
+        ButtonConsultar = new javax.swing.JButton();
+        LabePesquisar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextFileldUsuario.addActionListener(new java.awt.event.ActionListener()
+        jTextFileldPesquisa.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jTextFileldUsuarioActionPerformed(evt);
+                jTextFileldPesquisaActionPerformed(evt);
             }
         });
 
-        ButtonSalvar2.setBackground(new java.awt.Color(164, 152, 152));
-        ButtonSalvar2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        ButtonSalvar2.setText("Cancelar");
-        ButtonSalvar2.setActionCommand("ButtonEntrar");
-        ButtonSalvar2.addActionListener(new java.awt.event.ActionListener()
+        ButtonCancelar.setBackground(new java.awt.Color(164, 152, 152));
+        ButtonCancelar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        ButtonCancelar.setText("Cancelar");
+        ButtonCancelar.setActionCommand("ButtonEntrar");
+        ButtonCancelar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                ButtonSalvar2ActionPerformed(evt);
+                ButtonCancelarActionPerformed(evt);
             }
         });
 
-        ButtonSalvar3.setBackground(new java.awt.Color(164, 152, 152));
-        ButtonSalvar3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        ButtonSalvar3.setText("OK");
-        ButtonSalvar3.setActionCommand("ButtonEntrar");
-        ButtonSalvar3.addActionListener(new java.awt.event.ActionListener()
+        ButtonOk.setBackground(new java.awt.Color(164, 152, 152));
+        ButtonOk.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        ButtonOk.setText("OK");
+        ButtonOk.setActionCommand("ButtonEntrar");
+        ButtonOk.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                ButtonSalvar3ActionPerformed(evt);
+                ButtonOkActionPerformed(evt);
             }
         });
 
-        ButtonSalvar4.setBackground(new java.awt.Color(164, 152, 152));
-        ButtonSalvar4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        ButtonSalvar4.setText("Consultar");
-        ButtonSalvar4.setActionCommand("ButtonEntrar");
-        ButtonSalvar4.addActionListener(new java.awt.event.ActionListener()
+        ButtonConsultar.setBackground(new java.awt.Color(164, 152, 152));
+        ButtonConsultar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        ButtonConsultar.setText("Consultar");
+        ButtonConsultar.setActionCommand("ButtonEntrar");
+        ButtonConsultar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                ButtonSalvar4ActionPerformed(evt);
+                ButtonConsultarActionPerformed(evt);
             }
         });
 
-        LabelUsuario3.setFont(new java.awt.Font("DejaVu Sans", 1, 36)); // NOI18N
-        LabelUsuario3.setForeground(new java.awt.Color(0, 153, 255));
-        LabelUsuario3.setText("Pesquisar:");
+        LabePesquisar.setFont(new java.awt.Font("DejaVu Sans", 1, 36)); // NOI18N
+        LabePesquisar.setForeground(new java.awt.Color(0, 153, 255));
+        LabePesquisar.setText("Pesquisar:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String []
             {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nome", "Data Cadastro"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex)
+            {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(Tabela);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(ButtonSalvar3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ButtonSalvar2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(LabelUsuario3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jTextFileldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(ButtonOk, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(ButtonSalvar4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                            .addComponent(ButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextFileldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(LabePesquisar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(LabelUsuario3)
+                .addComponent(LabePesquisar)
                 .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ButtonSalvar4)
-                    .addComponent(jTextFileldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonConsultar)
+                    .addComponent(jTextFileldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonSalvar2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonSalvar3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(ButtonOk, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 360));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 340));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFileldUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextFileldUsuarioActionPerformed
-    {//GEN-HEADEREND:event_jTextFileldUsuarioActionPerformed
+    private void jTextFileldPesquisaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextFileldPesquisaActionPerformed
+    {//GEN-HEADEREND:event_jTextFileldPesquisaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFileldUsuarioActionPerformed
+    }//GEN-LAST:event_jTextFileldPesquisaActionPerformed
 
-    private void ButtonSalvar2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonSalvar2ActionPerformed
-    {//GEN-HEADEREND:event_ButtonSalvar2ActionPerformed
+    private void ButtonCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonCancelarActionPerformed
+    {//GEN-HEADEREND:event_ButtonCancelarActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_ButtonSalvar2ActionPerformed
+    }//GEN-LAST:event_ButtonCancelarActionPerformed
 
-    private void ButtonSalvar4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonSalvar4ActionPerformed
-    {//GEN-HEADEREND:event_ButtonSalvar4ActionPerformed
+    private void ButtonConsultarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonConsultarActionPerformed
+    {//GEN-HEADEREND:event_ButtonConsultarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonSalvar4ActionPerformed
+    }//GEN-LAST:event_ButtonConsultarActionPerformed
 
-    private void ButtonSalvar3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonSalvar3ActionPerformed
-    {//GEN-HEADEREND:event_ButtonSalvar3ActionPerformed
+    private void ButtonOkActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonOkActionPerformed
+    {//GEN-HEADEREND:event_ButtonOkActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonSalvar3ActionPerformed
+    }//GEN-LAST:event_ButtonOkActionPerformed
+
+    private void DefinirLarguraColunsTabela()
+    {
+        //Configurando as larguras das colunas ao carrgar a tela:
+        Tabela.getColumnModel().getColumn(0).setPreferredWidth(30);
+        Tabela.getColumnModel().getColumn(1).setPreferredWidth(100);
+        Tabela.getColumnModel().getColumn(2).setPreferredWidth(50);
+    }
 
     /**
      * @param args the command line arguments
@@ -220,13 +252,13 @@ public class ConsultaView extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonSalvar2;
-    private javax.swing.JButton ButtonSalvar3;
-    private javax.swing.JButton ButtonSalvar4;
-    private javax.swing.JLabel LabelUsuario3;
+    private javax.swing.JButton ButtonCancelar;
+    private javax.swing.JButton ButtonConsultar;
+    private javax.swing.JButton ButtonOk;
+    private javax.swing.JLabel LabePesquisar;
+    private javax.swing.JTable Tabela;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextFileldUsuario;
+    private javax.swing.JTextField jTextFileldPesquisa;
     // End of variables declaration//GEN-END:variables
 }
