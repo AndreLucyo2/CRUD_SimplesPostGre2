@@ -5,6 +5,16 @@
  */
 package VIEW;
 
+import DAO.Conexao;
+import DAO.UsuarioDAO;
+import MODEL.UsuarioDTO;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Andre
@@ -30,22 +40,50 @@ public class MenuView extends javax.swing.JFrame
     private void initComponents()
     {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 410));
+        jPanel1.setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("TELA PRINCIPAL DO SISTEMA");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(60, 120, 271, 22);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+
+        jMenuItem1.setText("TestaUsuarioDAO");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -53,6 +91,52 @@ public class MenuView extends javax.swing.JFrame
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem1ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem1ActionPerformed
+        try
+        {
+            Connection conexao = new Conexao().getConection();
+            UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
+
+            //=====================================================================================
+            //teste de insert:
+            //1° Criar um novo objeto:
+            UsuarioDTO usuario_INSERT = new UsuarioDTO("Andre_INSERT", "123456");
+            UsuarioDTO usuario_INSERIDO = usuarioDAO.insert(usuario_INSERT);
+
+            //Msg. de sucesso:
+            JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso!");
+
+            //=====================================================================================
+            //Teste de Select por ID:
+            UsuarioDTO usuario_SELECIONADO = usuarioDAO.selectPorID(usuario_INSERIDO);
+            //Msg. de sucesso:
+            JOptionPane.showMessageDialog(null, "Usuario Selecionado! " + usuario_INSERIDO.getUsuario());
+
+            //=====================================================================================
+            //Teste Delete:
+            usuarioDAO.delete(usuario_INSERIDO);
+            //Msg. de sucesso:
+            JOptionPane.showMessageDialog(null, "Usuario Deletado! " + usuario_INSERIDO.getUsuario());
+
+            //=====================================================================================
+            //Teste do Select ALL
+            ArrayList<UsuarioDTO> usuarios = usuarioDAO.selectAll();
+            //Faz um laço na lista de usuarios:
+            for (UsuarioDTO usuario : usuarios)
+            {
+                System.out.println(usuario.getId() + " | " + usuario.getUsuario());
+            }
+
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,9 +188,14 @@ public class MenuView extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
