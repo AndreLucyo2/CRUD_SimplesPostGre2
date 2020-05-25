@@ -50,10 +50,11 @@ public class FormCadastroView extends javax.swing.JFrame
         LabelSenha = new javax.swing.JLabel();
         jPasswordFileldSenha = new javax.swing.JPasswordField();
         ButtonPesquisar = new javax.swing.JButton();
-        ButtonExcluir = new javax.swing.JButton();
+        ButtonCancelar = new javax.swing.JButton();
         ButtonSalvar = new javax.swing.JButton();
+        ButtonExcluir1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -91,7 +92,7 @@ public class FormCadastroView extends javax.swing.JFrame
                 jTextFileldUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextFileldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 400, 30));
+        jPanel1.add(jTextFileldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 520, 30));
 
         LabelSenha.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         LabelSenha.setForeground(new java.awt.Color(0, 153, 255));
@@ -105,7 +106,7 @@ public class FormCadastroView extends javax.swing.JFrame
                 jPasswordFileldSenhaActionPerformed(evt);
             }
         });
-        jPanel1.add(jPasswordFileldSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 400, 30));
+        jPanel1.add(jPasswordFileldSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 520, 30));
 
         ButtonPesquisar.setBackground(new java.awt.Color(164, 152, 152));
         ButtonPesquisar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -120,18 +121,18 @@ public class FormCadastroView extends javax.swing.JFrame
         });
         jPanel1.add(ButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 120, 50));
 
-        ButtonExcluir.setBackground(new java.awt.Color(164, 152, 152));
-        ButtonExcluir.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        ButtonExcluir.setText("Excluir");
-        ButtonExcluir.setActionCommand("ButtonEntrar");
-        ButtonExcluir.addActionListener(new java.awt.event.ActionListener()
+        ButtonCancelar.setBackground(new java.awt.Color(164, 152, 152));
+        ButtonCancelar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        ButtonCancelar.setText("Cancelar");
+        ButtonCancelar.setActionCommand("ButtonEntrar");
+        ButtonCancelar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                ButtonExcluirActionPerformed(evt);
+                ButtonCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 120, 50));
+        jPanel1.add(ButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 120, 50));
 
         ButtonSalvar.setBackground(new java.awt.Color(164, 152, 152));
         ButtonSalvar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -144,9 +145,22 @@ public class FormCadastroView extends javax.swing.JFrame
                 ButtonSalvarActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 130, 50));
+        jPanel1.add(ButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 130, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 400));
+        ButtonExcluir1.setBackground(new java.awt.Color(164, 152, 152));
+        ButtonExcluir1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        ButtonExcluir1.setText("Excluir");
+        ButtonExcluir1.setActionCommand("ButtonEntrar");
+        ButtonExcluir1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                ButtonExcluir1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonExcluir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 120, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 400));
 
         pack();
         setLocationRelativeTo(null);
@@ -174,10 +188,10 @@ public class FormCadastroView extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFileldIdActionPerformed
 
-    private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonExcluirActionPerformed
-    {//GEN-HEADEREND:event_ButtonExcluirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonExcluirActionPerformed
+    private void ButtonCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonCancelarActionPerformed
+    {//GEN-HEADEREND:event_ButtonCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_ButtonCancelarActionPerformed
 
     private void ButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonPesquisarActionPerformed
     {//GEN-HEADEREND:event_ButtonPesquisarActionPerformed
@@ -185,6 +199,11 @@ public class FormCadastroView extends javax.swing.JFrame
         telaDeConsulta.setVisible(true);
 
     }//GEN-LAST:event_ButtonPesquisarActionPerformed
+
+    private void ButtonExcluir1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ButtonExcluir1ActionPerformed
+    {//GEN-HEADEREND:event_ButtonExcluir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonExcluir1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,7 +286,8 @@ public class FormCadastroView extends javax.swing.JFrame
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonExcluir;
+    private javax.swing.JButton ButtonCancelar;
+    private javax.swing.JButton ButtonExcluir1;
     private javax.swing.JButton ButtonPesquisar;
     private javax.swing.JButton ButtonSalvar;
     private javax.swing.JLabel LabelId;
